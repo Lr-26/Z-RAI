@@ -10,36 +10,23 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
   
-  const { firstName, lastName, email, phone, company, message } = req.body;
-  
-  const supabaseUrl = 'https://rglndnpztzkprbzhpcyr.supabase.co';
-  const supabaseKey = 'sb_publishable_TlRqwTCnYU5gWtfpzwJdug_N9pKMvJM'; // anon/public key provided by user
+  const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbwhSDepgG9UZdw6REPHfFjZs5oF-s-uhqfspdGRSD0YvanDlnlfjRH8R5jfeBdNQ0pY/exec';
   
   try {
-    const response = await fetch(`${supabaseUrl}/rest/v1/contacts`, {
+    const response = await fetch(googleScriptUrl, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'apikey': supabaseKey,
-        'Authorization': `Bearer ${supabaseKey}`,
-        'Prefer': 'return=minimal' // don't return the inserted row
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        first_name: firstName,
-        last_name: lastName,
-        email: email,
-        phone: phone,
-        company: company,
-        message: message
-      })
+      body: JSON.stringify(req.body)
     });
 
     if (response.ok) {
       return res.status(200).json({ success: true });
     } else {
       const errorText = await response.text();
-      console.error('Supabase error:', errorText);
-      return res.status(500).json({ error: errorText });
+      console.error('Google Script error:', errorText);
+      return res.status(500).json({ error: 'Error saving to Google Sheets' });
     }
   } catch (err) {
     console.error('Fetch error:', err);
