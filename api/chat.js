@@ -24,8 +24,17 @@ module.exports = async function handler(req, res) {
 
     let responseText = '';
 
-    // 1. Prioridad Máxima: Cotizaciones y Proyectos (Si el usuario ya tiene una idea clara)
-    if (text.match(/\b(precio|costo|cuanto|valor|pagar|presupuesto|cotizar|sitio web|web|ecommerce|tienda|landing|quiero hacer|necesito|idea|proyecto|crear|construir)\b/)) {
+    // 1. Verificar contexto: ¿Ya enviamos los precios?
+    const botAlreadySentPricing = messages.some(msg => msg.text && msg.text.includes('referencia clara de inversión'));
+    const isProjectChoice = text.match(/\b(sitio web|web|ecommerce|tienda|landing|ecomerce|tienda online|app|aplicacion|sistema|ia|automatizacion)\b/);
+    const isPricingRequest = text.match(/\b(precio|costo|cuanto|valor|pagar|presupuesto|cotizar|quiero hacer|necesito|idea|proyecto|crear|construir)\b/);
+
+    // 2. Si ya enviamos precios y el usuario elige un tipo de proyecto
+    if (botAlreadySentPricing && isProjectChoice) {
+      responseText = "¡Excelente elección! Para un proyecto de ese nivel, lo mejor es que hablemos directamente sobre los requerimientos técnicos y los objetivos de tu negocio.\n\nHaz clic en el **botón de WhatsApp** (abajo a la izquierda en la pantalla) para hablar con nuestro Arquitecto de Software y coordinar los próximos pasos.";
+    }
+    // 3. Prioridad Máxima: Cotizaciones y Proyectos (Primera vez)
+    else if (isPricingRequest || isProjectChoice) {
       responseText = "En Z-RAI desarrollamos tecnología a medida con estándares de élite. Para que tengas una referencia clara de inversión (en Pesos Argentinos):\n\n*   🎯 **Landing Page de Alta Conversión:** $120.000 – $400.000 ARS\n*   🏢 **Sitio Web Institucional (Corporativo):** $150.000 – $500.000 ARS\n*   🛒 **E-commerce Escalable:** $350.000 – $1.300.000+ ARS\n*   🤖 **Sistemas IA y Automatización:** Cotización a medida.\n\nEstos valores incluyen diseño exclusivo, integración de marca y configuración inicial. ¿Qué tipo de proyecto de estos tienes en mente?";
     }
     // 2. Saludos
