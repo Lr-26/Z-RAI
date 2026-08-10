@@ -40,7 +40,11 @@ module.exports = async function handler(req, res) {
     else if (text.match(/\b(proceso|tiempo|demora|trabajan|pasos|tardan|como)\b/)) {
       responseText = "Nuestro flujo de trabajo está diseñado para ser transparente y eficiente:\n\n1. **Discovery (Gratis):** Analizamos la viabilidad técnica de tu idea.\n2. **Arquitectura:** Diseñamos el plan de software exacto.\n3. **Desarrollo Ágil:** Programamos tu solución entregando avances reales.\n4. **Despliegue:** Lanzamos tu producto en servidores de alto rendimiento global (como Vercel).\n\nLos tiempos varían desde 2 semanas para integraciones simples, hasta un par de meses para plataformas completas.";
     }
-    // 5. Contacto
+    // 5. Proyecto / Idea
+    else if (text.match(/\b(si|sí|idea|tengo|proyecto|quiero|necesito|hacer|crear|construir|mente)\b/)) {
+      responseText = "¡Excelente! Me encanta escuchar sobre nuevos proyectos. Cuéntame un poco más: ¿Qué problema principal intentas resolver o qué funcionalidad clave necesitas?\n\nEn Z-RAI somos expertos en tomar una visión desde cero y desarrollar toda la arquitectura tecnológica para hacerla realidad. Describe tu idea y te orientaré sobre cómo podemos construirla juntos.";
+    }
+    // 6. Contacto
     else if (text.match(/\b(contacto|hablar|humano|reunion|asesor|llamar|telefono|mail|correo)\b/)) {
       responseText = "Si ya tienes tu proyecto claro y prefieres hablar directamente con nuestro Arquitecto de Software, te invito a cerrar este chat y completar el formulario 'Cotizar Proyecto' en la pantalla principal. Tus datos irán directo a nuestra base de datos segura y te contactaremos a la brevedad.";
     }
