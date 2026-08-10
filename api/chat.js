@@ -26,7 +26,7 @@ module.exports = async function handler(req, res) {
 
     // 1. Prioridad Máxima: Cotizaciones y Proyectos (Si el usuario ya tiene una idea clara)
     if (text.match(/\b(precio|costo|cuanto|valor|pagar|presupuesto|cotizar|sitio web|web|ecommerce|tienda|landing|quiero hacer|necesito|idea|proyecto|crear|construir)\b/)) {
-      responseText = "En Z-RAI desarrollamos tecnología a medida con estándares de élite. Para que tengas una referencia clara de inversión (en Pesos Argentinos):\n\n*   🎯 **Landing Page de Alta Conversión:** $1.050.000 – $2.300.000 ARS\n*   🏢 **Sitio Web Institucional (Corporativo):** $3.000.000 – $7.500.000 ARS\n*   🛒 **E-commerce Escalable:** $6.000.000 – $15.000.000+ ARS\n*   🤖 **Sistemas IA y Automatización:** Cotización a medida.\n\nEstos valores incluyen arquitectura técnica, diseño UX/UI exclusivo y servidores de alto rendimiento. ¿Qué tipo de proyecto de estos tienes en mente?";
+      responseText = "En Z-RAI desarrollamos tecnología a medida con estándares de élite. Para que tengas una referencia clara de inversión (en Pesos Argentinos):\n\n*   🎯 **Landing Page de Alta Conversión:** $120.000 – $400.000 ARS\n*   🏢 **Sitio Web Institucional (Corporativo):** $150.000 – $500.000 ARS\n*   🛒 **E-commerce Escalable:** $350.000 – $1.300.000+ ARS\n*   🤖 **Sistemas IA y Automatización:** Cotización a medida.\n\nEstos valores incluyen diseño exclusivo, integración de marca y configuración inicial. ¿Qué tipo de proyecto de estos tienes en mente?";
     }
     // 2. Saludos
     else if (text.match(/\b(hola|buenas|dia|tarde|noche|saludos|hey)\b/)) {
